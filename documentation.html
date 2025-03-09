@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DuraCloud Content Retrieval Tool - Technical Documentation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0d6efd;
+            --secondary-color: #6c757d;
+            --success-color: #198754;
+            --info-color: #0dcaf0;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            padding-top: 2rem;
+            position: relative;
+        }
+        .navbar {
+            background-color: var(--primary-color);
+        }
+        .navbar-brand {
+            color: white !important;
+            font-weight: bold;
+        }
+        .nav-link {
+            color: rgba(255,255,255,0.9) !important;
+        }
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            scroll-margin-top: 5rem;
+        }
+        pre {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .code-block {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        .component-card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 1.5rem;
+        }
+        .toc {
+            position: sticky;
+            top: 4rem;
+            height: calc(100vh - 4rem);
+            overflow-y: auto;
+            padding-top: 1rem;
+        }
+        .toc-link {
+            color: var(--secondary-color);
+            text-decoration: none;
+            display: block;
+            padding: 0.25rem 0;
+        }
+        .toc-link:hover {
+            color: var(--primary-color);
+        }
+        .toc-link.active {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-cloud-download-alt"></i> DuraCloud Retrieval
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="readme.html">Overview</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="documentation.html">Documentation</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid mt-5">
+        <div class="row">
+            <!-- Table of Contents Sidebar -->
+            <div class="col-md-3 d-none d-md-block">
+                <nav class="toc" id="toc">
+                    <h5 class="mb-3">Contents</h5>
+                    <a href="#architecture" class="toc-link">Architecture Overview</a>
+                    <a href="#components" class="toc-link">Component Details</a>
+                    <a href="#configuration" class="toc-link">Configuration</a>
+                    <a href="#security" class="toc-link">Security Considerations</a>
+                    <a href="#logging" class="toc-link">Logging System</a>
+                    <a href="#troubleshooting" class="toc-link">Troubleshooting Guide</a>
+                    <a href="#performance" class="toc-link">Performance Optimization</a>
+                    <a href="#monitoring" class="toc-link">Monitoring & Maintenance</a>
+                    <a href="#updates" class="toc-link">Update Procedures</a>
+                    <a href="#support" class="toc-link">Support & Contact</a>
+                </nav>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-9">
+                <header class="mb-5">
+                    <h1 class="display-4">Technical Documentation</h1>
+                    <p class="lead">Comprehensive guide for developers and administrators</p>
+                </header>
+
+                <section id="architecture" class="mb-5">
+                    <h2 class="section-title">
+                        <i class="fas fa-sitemap"></i> Architecture Overview
+                    </h2>
+                    <div class="card component-card">
+                        <div class="card-body">
+                            <h3>Frontend</h3>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-palette"></i> HTML5/CSS3/JavaScript with Bootstrap 5.3.0</li>
+                                <li><i class="fas fa-mobile-alt"></i> Responsive design for all devices</li>
+                                <li><i class="fas fa-icons"></i> Font Awesome 6.0.0 for icons</li>
+                                <li><i class="fas fa-chart-line"></i> Real-time progress tracking</li>
+                            </ul>
+
+                            <h3 class="mt-4">Backend</h3>
+                            <ul class="list-unstyled">
+                                <li><i class="fab fa-python"></i> Python Flask server for web services</li>
+                                <li><i class="fab fa-java"></i> Java Runtime (JRE 17+) for DuraCloud driver</li>
+                                <li><i class="fas fa-folder-open"></i> File system operations</li>
+                                <li><i class="fas fa-clipboard-list"></i> Comprehensive logging system</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="components" class="mb-5">
+                    <h2 class="section-title">
+                        <i class="fas fa-puzzle-piece"></i> Component Details
+                    </h2>
+                    
+                    <div class="card component-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-window-maximize"></i> Web Interface</h3>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Single-page application design</li>
+                                <li class="list-group-item">Real-time download progress updates</li>
+                                <li class="list-group-item">Credential input and validation</li>
+                                <li class="list-group-item">Space selection interface</li>
+                                <li class="list-group-item">Content list file upload</li>
+                                <li class="list-group-item">Status monitoring dashboard</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="card component-card mt-4">
+                        <div class="card-header">
+                            <h3><i class="fas fa-server"></i> Server Endpoints</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Endpoint</th>
+                                            <th>Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><code>/</code></td>
+                                            <td>Main application interface</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>/download</code></td>
+                                            <td>Content download handler</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>/status</code></td>
+                                            <td>Download progress updates</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>/config</code></td>
+                                            <td>Environment configuration</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>/history</code></td>
+                                            <td>Future history feature (Coming Soon)</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card component-card mt-4">
+                        <div class="card-header">
+                            <h3><i class="fab fa-java"></i> DuraCloud Driver</h3>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Authentication management</li>
+                                <li class="list-group-item">File download handling</li>
+                                <li class="list-group-item">Progress monitoring</li>
+                                <li class="list-group-item">Error handling and retry logic</li>
+                                <li class="list-group-item">Content list processing</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="configuration" class="mb-5">
+                    <h2 class="section-title">
+                        <i class="fas fa-cogs"></i> Configuration
+                    </h2>
+                    
+                    <div class="card component-card">
+                        <div class="card-header">
+                            <h3>Environment Variables</h3>
+                        </div>
+                        <div class="card-body">
+                            <pre><code># Server Configuration
+FLASK_PORT=5000           # Web server port
+FLASK_ENV=production      # Environment mode
+
+# DuraCloud Settings
+HOST=                    # Your institution's DuraCloud host (required)
+
+# File Paths
+DOWNLOAD_DIR=            # Download directory path
+CONTENT_LIST_DIR=        # Content list directory
+LOG_DIR=                 # Log file directory</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="card component-card mt-4">
+                        <div class="card-header">
+                            <h3>Docker Configuration</h3>
+                        </div>
+                        <div class="card-body">
+                            <pre><code>version: '3.8'
+services:
+  duracloud-retrieval:
+    build:
+      context: ../..
+      dockerfile: app/docker/Dockerfile
+    ports:
+      - "${FLASK_PORT:-5000}:5000"
+    volumes:
+      - ../../downloads:/app/downloads
+      - ../../content:/app/content
+      - ../../duracloud-logs:/app/logs
+    env_file:
+      - ../../app/.env</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="security" class="mb-5">
+                    <h2 class="section-title">
+                        <i class="fas fa-shield-alt"></i> Security Considerations
+                    </h2>
+                    
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card component-card">
+                                <div class="card-header">
+                                    <h3>Authentication</h3>
+                                </div>
+                                <div class="card-body">
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-key"></i> Credentials never stored</li>
+                                        <li><i class="fas fa-user-clock"></i> Session-based auth</li>
+                                        <li><i class="fas fa-lock"></i> HTTPS recommended</li>
+                                        <li><i class="fas fa-stopwatch"></i> Auto session timeout</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="card component-card">
+                                <div class="card-header">
+                                    <h3>File System</h3>
+                                </div>
+                                <div class="card-body">
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-folder-open"></i> Restricted directories</li>
+                                        <li><i class="fas fa-shield-alt"></i> Path traversal prevention</li>
+                                        <li><i class="fas fa-user-lock"></i> Permission management</li>
+                                        <li><i class="fas fa-broom"></i> Temporary file cleanup</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="card component-card">
+                                <div class="card-header">
+                                    <h3>Error Handling</h3>
+                                </div>
+                                <div class="card-body">
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-filter"></i> Sanitized messages</li>
+                                        <li><i class="fas fa-clipboard-check"></i> Secure logging</li>
+                                        <li><i class="fas fa-tachometer-alt"></i> Rate limiting</li>
+                                        <li><i class="fas fa-check-double"></i> Input validation</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="logging" class="mb-5">
+                    <h2 class="section-title">
+                        <i class="fas fa-clipboard-list"></i> Logging System
+                    </h2>
+                    
+                    <div class="card component-card">
+                        <div class="card-header">
+                            <h3>Log Types</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h4>Application Logs</h4>
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-server"></i> Server operations</li>
+                                        <li><i class="fas fa-download"></i> Download status</li>
+                                        <li><i class="fas fa-exclamation-triangle"></i> Error events</li>
+                                        <li><i class="fas fa-user-clock"></i> User actions</li>
+                                        <li><i class="fas fa-chart-line"></i> Performance metrics</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h4>Download Logs</h4>
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-clock"></i> Start/completion times</li>
+                                        <li><i class="fas fa-file"></i> File details</li>
+                                        <li><i class="fas fa-check-circle"></i> Success/failure status</li>
+                                        <li><i class="fas fa-exclamation-circle"></i> Error messages</li>
+                                        <li><i class="fas fa-tasks"></i> Progress tracking</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card component-card mt-4">
+                        <div class="card-header">
+                            <h3>Log Format</h3>
+                        </div>
+                        <div class="card-body">
+                            <pre><code>TIMESTAMP [LEVEL] [COMPONENT] Message
+2024-03-20 10:15:30 [INFO] [Server] Download started: file.pdf
+2024-03-20 10:15:35 [ERROR] [Driver] Connection timeout</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="troubleshooting" class="mb-5">
+                    <h2 class="section-title">
+                        <i class="fas fa-tools"></i> Troubleshooting Guide
+                    </h2>
+                    
+                    <div class="accordion" id="troubleshootingAccordion">
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#connectionIssues">
+                                    <i class="fas fa-network-wired"></i> Connection Issues
+                                </button>
+                            </h3>
+                            <div id="connectionIssues" class="accordion-collapse collapse show">
+                                <div class="accordion-body">
+                                    <h4>Unable to connect to DuraCloud</h4>
+                                    <ul>
+                                        <li>Check network connectivity</li>
+                                        <li>Verify DuraCloud host URL</li>
+                                        <li>Confirm credentials</li>
+                                        <li>Check firewall settings</li>
+                                        <li>Verify proxy configuration</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#downloadIssues">
+                                    <i class="fas fa-download"></i> Download Issues
+                                </button>
+                            </h3>
+                            <div id="downloadIssues" class="accordion-collapse collapse">
+                                <div class="accordion-body">
+                                    <h4>Downloads failing or incomplete</h4>
+                                    <ul>
+                                        <li>Check available disk space</li>
+                                        <li>Verify file permissions</li>
+                                        <li>Monitor network stability</li>
+                                        <li>Check Java heap space</li>
+                                        <li>Review concurrent download limits</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#dockerIssues">
+                                    <i class="fab fa-docker"></i> Docker Issues
+                                </button>
+                            </h3>
+                            <div id="dockerIssues" class="accordion-collapse collapse">
+                                <div class="accordion-body">
+                                    <h4>Container not starting</h4>
+                                    <ul>
+                                        <li>Check for port conflicts</li>
+                                        <li>Verify volume permissions</li>
+                                        <li>Review environment variables</li>
+                                        <li>Examine Docker logs</li>
+                                        <li>Monitor resource limits</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="performance" class="mb-5">
+                    <h2 class="section-title">
+                        <i class="fas fa-tachometer-alt"></i> Performance Optimization
+                    </h2>
+                    
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card component-card">
+                                <div class="card-header">
+                                    <h3>Download Optimization</h3>
+                                </div>
+                                <div class="card-body">
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-random"></i> Concurrent downloads</li>
+                                        <li><i class="fas fa-stream"></i> Chunk-based transfers</li>
+                                        <li><i class="fas fa-chart-bar"></i> Progress monitoring</li>
+                                        <li><i class="fas fa-redo"></i> Automatic retries</li>
+                                        <li><i class="fas fa-network-wired"></i> Bandwidth management</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="card component-card">
+                                <div class="card-header">
+                                    <h3>Resource Management</h3>
+                                </div>
+                                <div class="card-body">
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-memory"></i> Memory monitoring</li>
+                                        <li><i class="fas fa-hdd"></i> Disk space checking</li>
+                                        <li><i class="fas fa-database"></i> Connection pooling</li>
+                                        <li><i class="fas fa-archive"></i> Cache management</li>
+                                        <li><i class="fas fa-tasks"></i> Process monitoring</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="card component-card">
+                                <div class="card-header">
+                                    <h3>Error Recovery</h3>
+                                </div>
+                                <div class="card-body">
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-sync"></i> Automatic retry logic</li>
+                                        <li><i class="fas fa-pause"></i> Partial download resume</li>
+                                        <li><i class="fas fa-plug"></i> Connection recovery</li>
+                                        <li><i class="fas fa-user-clock"></i> Session management</li>
+                                        <li><i class="fas fa-list"></i> Queue management</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="monitoring" class="mb-5">
+                    <h2 class="section-title">
+                        <i class="fas fa-chart-line"></i> Monitoring & Maintenance
+                    </h2>
+                    
+                    <div class="card component-card">
+                        <div class="card-header">
+                            <h3>System Health</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h4>Metrics</h4>
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-microchip"></i> CPU/Memory usage</li>
+                                        <li><i class="fas fa-database"></i> Disk space monitoring</li>
+                                        <li><i class="fas fa-network-wired"></i> Network bandwidth</li>
+                                        <li><i class="fas fa-exclamation-triangle"></i> Error rate tracking</li>
+                                        <li><i class="fas fa-list-ol"></i> Queue status</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h4>Maintenance Tasks</h4>
+                                    <div class="code-block">
+                                        <p>Log Rotation:</p>
+                                        <pre><code>logrotate -d /etc/logrotate.d/duracloud</code></pre>
+                                        
+                                        <p>Temporary File Cleanup:</p>
+                                        <pre><code>find /tmp/duracloud -type f -mtime +7 -delete</code></pre>
+                                        
+                                        <p>Resource Monitoring:</p>
+                                        <pre><code>docker stats duracloud-web</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="updates" class="mb-5">
+                    <h2 class="section-title">
+                        <i class="fas fa-sync"></i> Update Procedures
+                    </h2>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card component-card">
+                                <div class="card-header">
+                                    <h3>Application Updates</h3>
+                                </div>
+                                <div class="card-body">
+                                    <ol class="list-group list-group-flush">
+                                        <li class="list-group-item">
+                                            <h5>Stop the application</h5>
+                                            <pre><code>cd app/docker
+docker compose down</code></pre>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <h5>Update code</h5>
+                                            <pre><code># Clone the repository if you haven't already
+git clone https://github.com/kgitbit/duracloud-retrieval-web.git
+cd duracloud-retrieval-web
+
+# Or update existing repository
+git pull origin main</code></pre>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <h5>Rebuild and restart</h5>
+                                            <pre><code>docker compose up --build -d</code></pre>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div class="card component-card">
+                                <div class="card-header">
+                                    <h3>Driver Updates</h3>
+                                </div>
+                                <div class="card-body">
+                                    <ol class="list-group list-group-flush">
+                                        <li class="list-group-item">Download new driver version</li>
+                                        <li class="list-group-item">Update configuration</li>
+                                        <li class="list-group-item">Test in staging environment</li>
+                                        <li class="list-group-item">Deploy to production</li>
+                                        <li class="list-group-item">Verify functionality</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="support" class="mb-5">
+                    <h2 class="section-title">
+                        <i class="fas fa-life-ring"></i> Support & Contact
+                    </h2>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card component-card">
+                                <div class="card-header">
+                                    <h3>Technical Support</h3>
+                                </div>
+                                <div class="card-body">
+                                    <p><i class="fas fa-envelope"></i> Email: <a href="mailto:krishna.opensource.dev@gmail.com">krishna.opensource.dev@gmail.com</a></p>
+                                    <p><i class="fas fa-book"></i> Documentation: <a href="https://wiki.lyrasis.org/display/DURACLOUDDOC/DuraCloud+Retrieval+Tool" target="_blank">DuraCloud Wiki</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div class="card component-card">
+                                <div class="card-header">
+                                    <h3>DuraCloud Service</h3>
+                                </div>
+                                <div class="card-body">
+                                    <p><i class="fas fa-users"></i> Contact your institution's DuraCloud administrator</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center py-4 mt-5 border-top">
+        <div class="container">
+            <p>Licensed under DuraCloud's terms and conditions</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Highlight active section in TOC based on scroll position
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('section[id]');
+            const tocLinks = document.querySelectorAll('.toc-link');
+
+            function highlightTOC() {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 100;
+                    if (window.scrollY >= sectionTop) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                tocLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').slice(1) === current) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', highlightTOC);
+            highlightTOC(); // Initial highlight
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DuraCloud Content Retrieval Tool - Overview</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0d6efd;
+            --secondary-color: #6c757d;
+            --success-color: #198754;
+            --info-color: #0dcaf0;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            padding-top: 2rem;
+        }
+        .navbar {
+            background-color: var(--primary-color);
+        }
+        .navbar-brand {
+            color: white !important;
+            font-weight: bold;
+        }
+        .nav-link {
+            color: rgba(255,255,255,0.9) !important;
+        }
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .feature-card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+            margin-bottom: 1rem;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        pre {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .code-block {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        .troubleshooting-item {
+            margin-bottom: 1.5rem;
+        }
+        .support-card {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-cloud-download-alt"></i> DuraCloud Retrieval
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="readme.html">Overview</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="documentation.html">Documentation</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <header class="text-center mb-5">
+            <h1 class="display-4">DuraCloud Content Retrieval Tool</h1>
+            <p class="lead">A modern web interface for downloading content from DuraCloud storage spaces.</p>
+        </header>
+
+        <section class="mb-5">
+            <h2 class="section-title">
+                <i class="fas fa-star"></i> Features
+            </h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="feature-card card p-3">
+                        <i class="fas fa-globe feature-icon"></i>
+                        <h5>Modern Web Interface</h5>
+                        <p>Real-time progress tracking and intuitive controls</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card card p-3">
+                        <i class="fas fa-box feature-icon"></i>
+                        <h5>Batch Downloads</h5>
+                        <p>Support for content list files and bulk operations</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card card p-3">
+                        <i class="fas fa-lock feature-icon"></i>
+                        <h5>Secure Handling</h5>
+                        <p>Secure credential handling for DuraCloud access</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-5">
+            <h2 class="section-title">
+                <i class="fas fa-rocket"></i> Quick Start
+            </h2>
+            <div class="card">
+                <div class="card-body">
+                    <h4>Prerequisites</h4>
+                    <ul class="list-unstyled">
+                        <li><i class="fab fa-docker"></i> Docker Desktop</li>
+                        <li><i class="fas fa-terminal"></i> PowerShell (Windows) or Terminal (macOS/Linux)</li>
+                    </ul>
+
+                    <h4 class="mt-4">Installation Steps</h4>
+                    <div class="code-block">
+                        <p>1. Clone the repository:</p>
+                        <pre><code>git clone https://github.com/kgitbit/duracloud-retrieval-web.git
+cd duracloud-retrieval-web</code></pre>
+
+                        <p>2. Configure environment (optional):</p>
+                        <pre><code>cp app/.env.template app/.env
+# Edit app/.env with your preferred settings</code></pre>
+
+                        <p>3. Start the application:</p>
+                        <pre><code># Windows PowerShell
+.\docker-commands.ps1 rebuild
+
+# macOS/Linux
+docker compose -f app/docker/docker-compose.yml up --build -d</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-5">
+            <h2 class="section-title">
+                <i class="fas fa-folder-open"></i> Project Structure
+            </h2>
+            <div class="code-block">
+                <pre><code>duracloud-retrieval-web/
+├── app/
+│   ├── docker/             # Docker configuration
+│   │   ├── Dockerfile     # Container definition
+│   │   └── docker-compose.yml
+│   ├── frontend/          # Web interface
+│   │   └── index.html    # Main interface
+│   ├── server.py          # Flask server
+│   └── requirements.txt   # Python dependencies
+├── downloads/            # Downloaded files
+├── duracloud-logs/       # Application logs
+└── content/             # Content list files</code></pre>
+            </div>
+        </section>
+
+        <section class="mb-5">
+            <h2 class="section-title">
+                <i class="fas fa-wrench"></i> Usage
+            </h2>
+            <div class="card">
+                <div class="card-body">
+                    <ol class="list-group list-group-flush">
+                        <li class="list-group-item">Open <code>http://localhost:5000</code> in your browser</li>
+                        <li class="list-group-item">Enter your DuraCloud credentials</li>
+                        <li class="list-group-item">Select your space and upload a content list file</li>
+                        <li class="list-group-item">Choose download directory</li>
+                        <li class="list-group-item">Start the download process</li>
+                        <li class="list-group-item">Monitor progress in real-time</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-5">
+            <h2 class="section-title">
+                <i class="fas fa-terminal"></i> Docker Commands
+            </h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <h5><i class="fab fa-windows"></i> Windows/Linux/macOS</h5>
+                        </div>
+                        <div class="card-body">
+                            <pre><code>cd app/docker
+docker compose up --build -d    # Build and start containers
+docker compose down            # Stop containers
+docker compose logs           # View logs
+docker compose ps             # Check status</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-5">
+            <h2 class="section-title">
+                <i class="fas fa-bug"></i> Troubleshooting
+            </h2>
+            <div class="accordion" id="troubleshootingAccordion">
+                <div class="accordion-item">
+                    <h3 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#portConflicts">
+                            Port Conflicts
+                        </button>
+                    </h3>
+                    <div id="portConflicts" class="accordion-collapse collapse show">
+                        <div class="accordion-body">
+                            <p><strong>Error:</strong> Port 5000 already in use</p>
+                            <p><strong>Solution:</strong> Change port in docker-compose.yml or stop conflicting service</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h3 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#permissionIssues">
+                            Permission Issues
+                        </button>
+                    </h3>
+                    <div id="permissionIssues" class="accordion-collapse collapse">
+                        <div class="accordion-body">
+                            <p><strong>Error:</strong> Permission denied for downloads directory</p>
+                            <p><strong>Solution:</strong> Check directory permissions and ownership</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h3 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#connectionProblems">
+                            Connection Problems
+                        </button>
+                    </h3>
+                    <div id="connectionProblems" class="accordion-collapse collapse">
+                        <div class="accordion-body">
+                            <p><strong>Error:</strong> Unable to connect to DuraCloud</p>
+                            <p><strong>Solution:</strong> Verify credentials and network connectivity</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-5">
+            <h2 class="section-title">
+                <i class="fas fa-book"></i> Documentation
+            </h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5><i class="fas fa-file-alt"></i> Technical Documentation</h5>
+                            <p>Detailed technical guide for developers and administrators</p>
+                            <a href="documentation.html" class="btn btn-primary">View Documentation</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5><i class="fas fa-external-link-alt"></i> DuraCloud Wiki</h5>
+                            <p>Official DuraCloud documentation and guides</p>
+                            <a href="https://wiki.lyrasis.org/display/DURACLOUDDOC/DuraCloud+Retrieval+Tool" class="btn btn-secondary" target="_blank">Visit Wiki</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-5">
+            <h2 class="section-title">
+                <i class="fas fa-hands-helping"></i> Support
+            </h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="support-card">
+                        <h5><i class="fas fa-tools"></i> Technical Issues</h5>
+                        <p>Contact: <a href="mailto:krishna.opensource.dev@gmail.com">krishna.opensource.dev@gmail.com</a></p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="support-card">
+                        <h5><i class="fas fa-cloud"></i> DuraCloud Service</h5>
+                        <p>Contact your institution's DuraCloud administrator</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center py-4 mt-5 border-top">
+            <p>Licensed under DuraCloud's terms and conditions</p>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> 

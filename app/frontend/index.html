@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<!--
+DuraCloud Content Retrieval Tool
+Copyright 2024 Krishna Pareek
+
+This work is a derivative of DuraCloud, Copyright 2009-2019 DuraSpace.
+Licensed under the Apache License, Version 2.0
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DuraCloud Content Retrieval Tool</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #FFF1E0;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #344767;
+            min-height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            padding-top: 20px;
+        }
+
+        .sidebar .nav-link {
+            color: #fff;
+            padding: 15px 25px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .sidebar .nav-link:hover,
+        .sidebar .nav-link.active {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding-left: 30px;
+        }
+
+        .sidebar .nav-link i {
+            margin-right: 10px;
+        }
+
+        .main-content {
+            margin-left: 250px;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 800px;
+        }
+
+        .card {
+            border: none;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            background-color: #FFFFFF;
+        }
+
+        .card-header {
+            background-color: #344767;
+            border-bottom: 1px solid #eee;
+            padding: 1.5rem;
+        }
+
+        .card-header h2 {
+            color: #FFFFFF;
+            margin-bottom: 0;
+        }
+
+        .card-body {
+            padding: 2rem;
+        }
+
+        .form-label {
+            font-weight: 500;
+            color: #344767;
+        }
+
+        .form-control:focus {
+            border-color: #344767;
+            box-shadow: 0 0 0 0.2rem rgba(52, 71, 103, 0.25);
+        }
+
+        .btn-primary {
+            background-color: #344767;
+            border-color: #344767;
+        }
+
+        .btn-primary:hover {
+            background-color: #2c3c56;
+            border-color: #2c3c56;
+        }
+
+        .btn-secondary {
+            background-color: #666666;
+            border-color: #666666;
+        }
+
+        .btn-secondary:hover {
+            background-color: #4d4d4d;
+            border-color: #4d4d4d;
+        }
+
+        #downloadProgress {
+            margin-top: 20px;
+        }
+
+        .file-status {
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .file-status.pending {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        .file-status.success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .file-status.error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .spinner-border {
+            width: 1rem;
+            height: 1rem;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+    <!-- Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Vertical Navigation Bar -->
+    <div class="sidebar">
+        <h3 class="text-white text-center mb-4">DuraCloud Tools</h3>
+        <nav class="nav flex-column">
+            <a class="nav-link active" href="javascript:void(0)" data-tab="retrievalTool">
+                <i class="fas fa-cloud-download-alt"></i> Retrieval Tool
+            </a>
+            <a class="nav-link" href="javascript:void(0)" data-tab="history">
+                <i class="fas fa-history"></i> History
+            </a>
+        </nav>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+        <!-- Retrieval Tool Tab -->
+        <div id="retrievalTool" class="tab-content active">
+            <div class="container">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="text-center mb-0">Content Retrieval Tool</h2>
+                    </div>
+                    <div class="card-body">
+                        <form id="retrievalForm" class="needs-validation" novalidate>
+                            <div class="mb-3">
+                                <label for="host" class="form-label">DuraCloud Host</label>
+                                <input type="text" class="form-control" id="host" name="host" readonly>
+                                <small class="form-text text-muted">This value is configured in your environment settings.</small>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Username:</label>
+                                <input type="text" class="form-control" id="username" name="username" required>
+                                <div class="invalid-feedback">Please enter your username.</div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password:</label>
+                                <input type="password" class="form-control" id="password" name="password" required>
+                                <div class="invalid-feedback">Please enter your password.</div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="space" class="form-label">Space Name:</label>
+                                <input type="text" class="form-control" id="space" name="space" required>
+                                <div class="invalid-feedback">Please enter the space name.</div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="downloadDir" class="form-label">Download Directory:</label>
+                                <input type="text" class="form-control" id="downloadDir" name="downloadDir" 
+                                       value="/downloads" required>
+                                <div class="invalid-feedback">Please enter the download directory.</div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="contentList" class="form-label">Content List File:</label>
+                                <input type="file" class="form-control" id="contentList" name="contentList" 
+                                       accept=".txt" required>
+                                <div class="invalid-feedback">Please select a content list file.</div>
+                            </div>
+
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <button type="button" class="btn btn-secondary" onclick="clearForm()">Clear Form</button>
+                                <button type="submit" class="btn btn-primary">Download Content</button>
+                            </div>
+                        </form>
+
+                        <div id="downloadProgress" class="mt-4" style="display: none;">
+                            <h5 class="mb-3">Download Progress</h5>
+                            <div id="fileList"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- History Tab -->
+        <div id="history" class="tab-content">
+            <div class="container">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="text-center mb-0">Download History</h2>
+                    </div>
+                    <div class="card-body text-center">
+                        <h4 class="text-muted">🚧 Coming Soon! 🚧</h4>
+                        <p class="lead">The history feature is currently under development and will be available in a future release.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Fetch configuration when page loads
+        window.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const response = await fetch('/config');
+                const config = await response.json();
+                document.getElementById('host').value = config.defaultHost;
+                document.getElementById('downloadDir').value = config.defaultDownloadDir;
+            } catch (error) {
+                console.error('Error loading configuration:', error);
+            }
+        });
+
+        // Tab switching functionality
+        function showTab(tabId) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabId).classList.add('active');
+            
+            // Update active state in navigation
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            document.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
+        }
+
+        // Initialize tab click handlers
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const tabId = this.getAttribute('data-tab');
+                showTab(tabId);
+            });
+        });
+
+        // Form validation
+        (function () {
+            'use strict'
+            var forms = document.querySelectorAll('.needs-validation')
+            Array.prototype.slice.call(forms).forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
+
+        document.getElementById('retrievalForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            if (!this.checkValidity()) {
+                return;
+            }
+
+            // Disable form during submission
+            const form = this;
+            const submitButton = form.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton.textContent;
+            form.querySelectorAll('input, button').forEach(el => el.disabled = true);
+            submitButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Downloading...';
+
+            // Show progress section
+            const progressDiv = document.getElementById('downloadProgress');
+            const fileListDiv = document.getElementById('fileList');
+            progressDiv.style.display = 'block';
+            fileListDiv.innerHTML = '';
+
+            // Create form data
+            const formData = new FormData();
+            formData.append('host', document.getElementById('host').value);
+            formData.append('username', document.getElementById('username').value);
+            formData.append('password', document.getElementById('password').value);
+            formData.append('space', document.getElementById('space').value);
+            formData.append('downloadDir', document.getElementById('downloadDir').value);
+            formData.append('contentList', document.getElementById('contentList').files[0]);
+
+            try {
+                const response = await fetch('/download', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    // Parse the output and create status elements for each file
+                    const files = result.files || [];
+                    files.forEach(file => {
+                        const statusElement = document.createElement('div');
+                        statusElement.className = `file-status ${file.status}`;
+                        statusElement.innerHTML = `
+                            <span>${file.name}</span>
+                            <span>${file.message}</span>
+                        `;
+                        fileListDiv.appendChild(statusElement);
+                    });
+
+                    // Add overall status
+                    const overallStatus = document.createElement('div');
+                    overallStatus.className = 'file-status success mt-3';
+                    overallStatus.textContent = result.message;
+                    fileListDiv.appendChild(overallStatus);
+                } else {
+                    const errorElement = document.createElement('div');
+                    errorElement.className = 'file-status error';
+                    errorElement.textContent = result.error || result.message || 'An error occurred';
+                    fileListDiv.appendChild(errorElement);
+                }
+            } catch (error) {
+                const errorElement = document.createElement('div');
+                errorElement.className = 'file-status error';
+                errorElement.textContent = 'Error connecting to server: ' + error.message;
+                fileListDiv.appendChild(errorElement);
+            } finally {
+                // Re-enable form
+                form.querySelectorAll('input, button').forEach(el => el.disabled = false);
+                submitButton.textContent = originalButtonText;
+            }
+        });
+
+        function clearForm() {
+            const form = document.getElementById('retrievalForm');
+            form.reset();
+            form.classList.remove('was-validated');
+            document.getElementById('downloadProgress').style.display = 'none';
+            document.getElementById('fileList').innerHTML = '';
+            
+            // Reset default values
+            document.getElementById('host').value = '';
+            document.getElementById('downloadDir').value = '/downloads';
+        }
+    </script>
+</body>
+</html> 

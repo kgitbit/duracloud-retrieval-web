@@ -180,6 +180,56 @@ Licensed under the Apache License, Version 2.0
         .tab-content.active {
             display: block;
         }
+
+        /* Help & Documentation styles */
+        .help-section {
+            margin-bottom: 2rem;
+        }
+
+        .help-section h3 {
+            color: #1C1E21;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #1C1E21;
+        }
+
+        .faq-item {
+            margin-bottom: 1rem;
+        }
+
+        .faq-question {
+            font-weight: 500;
+            color: #1C1E21;
+            margin-bottom: 0.5rem;
+        }
+
+        .faq-answer {
+            color: #666;
+            padding-left: 1rem;
+        }
+
+        .troubleshooting-item {
+            background-color: #fff;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            border-left: 4px solid #1C1E21;
+        }
+
+        .contact-card {
+            background-color: #fff;
+            padding: 1.5rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+
+        .version-info {
+            font-size: 0.9rem;
+            color: #666;
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-radius: 4px;
+        }
     </style>
     <!-- Font Awesome for icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -194,6 +244,9 @@ Licensed under the Apache License, Version 2.0
             </a>
             <a class="nav-link" href="javascript:void(0)" data-tab="history">
                 <i class="fas fa-history"></i> History
+            </a>
+            <a class="nav-link" href="javascript:void(0)" data-tab="help">
+                <i class="fas fa-question-circle"></i> Help & Docs
             </a>
         </nav>
     </div>
@@ -257,6 +310,94 @@ Licensed under the Apache License, Version 2.0
                         <div id="downloadProgress" class="mt-4" style="display: none;">
                             <h5 class="mb-3">Download Progress</h5>
                             <div id="fileList"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Help & Documentation Tab -->
+        <div id="help" class="tab-content">
+            <div class="container">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="text-center mb-0">Help & Documentation</h2>
+                    </div>
+                    <div class="card-body">
+                        <!-- User Guide Section -->
+                        <div class="help-section">
+                            <h3><i class="fas fa-book"></i> User Guide</h3>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5>Getting Started</h5>
+                                    <ol>
+                                        <li>Enter your DuraCloud credentials</li>
+                                        <li>Specify your space name</li>
+                                        <li>Choose a download directory</li>
+                                        <li>Upload your content list file</li>
+                                        <li>Click "Download Content" to begin</li>
+                                    </ol>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5>Best Practices</h5>
+                                    <ul>
+                                        <li>Keep your content list file up to date</li>
+                                        <li>Ensure sufficient disk space</li>
+                                        <li>Monitor download progress</li>
+                                        <li>Verify downloaded files</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ Section -->
+                        <div class="help-section">
+                            <h3><i class="fas fa-question"></i> Frequently Asked Questions</h3>
+                            <div class="faq-item">
+                                <div class="faq-question">Q: What format should my content list file be in?</div>
+                                <div class="faq-answer">A: Your content list should be a plain text file (.txt) with one file path per line.</div>
+                            </div>
+                        </div>
+
+                        <!-- Troubleshooting Section -->
+                        <div class="help-section">
+                            <h3><i class="fas fa-wrench"></i> Troubleshooting Tips</h3>
+                            <div class="troubleshooting-item">
+                                <h5>Connection Issues</h5>
+                                <p>Check your internet connection and verify your DuraCloud host is accessible.</p>
+                            </div>
+                            <div class="troubleshooting-item">
+                                <h5>Authentication Errors</h5>
+                                <p>Ensure your username and password are correct. Contact your administrator if issues persist.</p>
+                            </div>
+                            <div class="troubleshooting-item">
+                                <h5>Download Failures</h5>
+                                <p>Verify you have sufficient disk space and proper write permissions in the download directory.</p>
+                            </div>
+                        </div>
+
+                        <!-- Contact Support Section -->
+                        <div class="help-section">
+                            <h3><i class="fas fa-envelope"></i> Contact Support</h3>
+                            <div class="contact-card">
+                                <p>For technical support or questions, please contact:</p>
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-envelope-square"></i> Email: <a href="mailto:krishna.opensource.dev@gmail.com">krishna.opensource.dev@gmail.com</a></li>
+                                    <li><i class="fas fa-globe"></i> Website: <a href="https://wiki.lyrasis.org/display/DURACLOUDDOC/DuraCloud+Retrieval+Tool" target="_blank">DuraCloud Retrieval Tool Documentation</a></li>
+                                    <li><i class="fas fa-clock"></i> Hours: Monday-Friday, 9:00 AM - 5:00 PM EST</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Version Information -->
+                        <div class="help-section">
+                            <h3><i class="fas fa-code-branch"></i> Version Information</h3>
+                            <div class="version-info">
+                                <p class="mb-1"><strong>DuraCloud Content Retrieval Tool</strong></p>
+                                <p class="mb-1">Version: 1.0.0</p>
+                                <p class="mb-1">Last Updated: January 2024</p>
+                                <p class="mb-0">Copyright © 2024 Krishna Pareek</p>
+                            </div>
                         </div>
                     </div>
                 </div>

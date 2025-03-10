@@ -14,6 +14,7 @@ import platform
 import tempfile
 import shutil
 from werkzeug.utils import secure_filename
+import logging
 
 app = Flask(__name__, static_folder='frontend')
 
@@ -32,6 +33,15 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 if not HOST:
     raise ValueError("HOST environment variable must be configured with your institution's DuraCloud host")
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s [%(levelname)s] %(message)s',
+    handlers=[
+        logging.StreamHandler()
+    ]
+)
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -72,6 +82,14 @@ def parse_output(output_text):
 @app.route('/')
 def serve_frontend():
     return send_from_directory('frontend', 'index.html')
+
+@app.route('/documentation.html')
+def serve_documentation():
+    return send_from_directory('frontend', 'documentation.html')
+
+@app.route('/readme.html')
+def serve_readme():
+    return send_from_directory('frontend', 'readme.html')
 
 @app.route('/config')
 def get_config():
@@ -163,4 +181,5 @@ def download_content():
         }), 500
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=PORT, debug=True) 
+    port = int(os.getenv('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=os.getenv('FLASK_ENV') == 'development')

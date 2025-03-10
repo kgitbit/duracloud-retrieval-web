@@ -1,47 +1,33 @@
-FROM ubuntu:20.04
+FROM python:3.11-slim
 
-# Avoid prompts from apt
-ENV DEBIAN_FRONTEND=noninteractive
-
-# Install Java and Python
+# Install OpenJDK-17
 RUN apt-get update && \
-    apt-get install -y openjdk-17-jdk python3.9 python3.9-venv python3-pip && \
+    apt-get install -y openjdk-17-jre-headless && \
+    apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 # Set working directory
 WORKDIR /app
 
-# Copy application files
+# Copy requirements first for better caching
 COPY app/requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy application files
+COPY app/frontend/ frontend/
 COPY app/server.py .
-COPY app/retrievaltool-8.0.0-driver.jar .
-
-# Create and activate virtual environment
-ENV VIRTUAL_ENV=/app/venv
-RUN python3.9 -m venv $VIRTUAL_ENV
-ENV PATH="$VIRTUAL_ENV/bin:$PATH"
-
-# Install Python dependencies in virtual environment
-RUN pip install --upgrade pip setuptools wheel && \
-    pip install --no-cache-dir -r requirements.txt
+COPY retrievaltool-8.0.0-driver.jar .
 
 # Create necessary directories
-RUN mkdir -p uploads downloads frontend && \
-    mkdir -p /root/duracloud-retrieval-work && \
-    chmod 777 /root/duracloud-retrieval-work && \
-    chmod 777 downloads && \
-    chmod 777 frontend
+RUN mkdir -p downloads content duracloud-logs
 
 # Set environment variables
-ENV FLASK_PORT=5000 \
-    DOWNLOAD_DIR=/app/downloads \
-    CONTENT_LIST_DIR=/app/content \
-    LOG_DIR=/app/logs \
-    FLASK_ENV=development \
-    FLASK_DEBUG=1
+ENV FLASK_APP=server.py
+ENV FLASK_ENV=production
+ENV PORT=5000
 
 # Expose port
-EXPOSE ${FLASK_PORT}
+EXPOSE 5000
 
-# Start the application using the virtual environment Python
+# Run the application
 CMD ["python", "server.py"]

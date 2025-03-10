@@ -204,7 +204,7 @@ docker compose -f app/docker/docker-compose.yml up --build -d</code></pre>
             <div class="card">
                 <div class="card-body">
                     <ol class="list-group list-group-flush">
-                        <li class="list-group-item">Open <code>http://localhost:5000</code> in your browser</li>
+                        <li class="list-group-item">Open <code>http://localhost:8080</code> in your browser</li>
                         <li class="list-group-item">Enter your DuraCloud credentials</li>
                         <li class="list-group-item">Select your space and upload a content list file</li>
                         <li class="list-group-item">Choose download directory</li>
@@ -250,7 +250,7 @@ docker compose ps             # Check status</code></pre>
                     </h3>
                     <div id="portConflicts" class="accordion-collapse collapse show">
                         <div class="accordion-body">
-                            <p><strong>Error:</strong> Port 5000 already in use</p>
+                            <p><strong>Error:</strong> Port 8080 already in use</p>
                             <p><strong>Solution:</strong> Change port in docker-compose.yml or stop conflicting service</p>
                         </div>
                     </div>

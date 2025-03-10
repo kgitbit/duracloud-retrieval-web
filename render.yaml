@@ -7,7 +7,7 @@ services:
       - key: HOST
         sync: false
       - key: PORT
-        value: 5000
+        value: 8080
     disk:
       name: data
       mountPath: /app/downloads

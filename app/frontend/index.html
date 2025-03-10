@@ -350,12 +350,70 @@ Licensed under the Apache License, Version 2.0
                             </div>
                         </div>
 
+                        <!-- Technical Overview Section -->
+                        <div class="help-section">
+                            <h3><i class="fas fa-sitemap"></i> Technical Overview</h3>
+                            <div class="card component-card">
+                                <div class="card-body">
+                                    <h5>Frontend</h5>
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-palette"></i> HTML5/CSS3/JavaScript with Bootstrap 5.3.0</li>
+                                        <li><i class="fas fa-mobile-alt"></i> Responsive design for all devices</li>
+                                        <li><i class="fas fa-icons"></i> Font Awesome 6.0.0 for icons</li>
+                                        <li><i class="fas fa-chart-line"></i> Real-time progress tracking</li>
+                                    </ul>
+
+                                    <h5 class="mt-4">Backend</h5>
+                                    <ul class="list-unstyled">
+                                        <li><i class="fab fa-python"></i> Python Flask server for web services</li>
+                                        <li><i class="fab fa-java"></i> Java Runtime (JRE 17+) for DuraCloud driver</li>
+                                        <li><i class="fas fa-folder-open"></i> File system operations</li>
+                                        <li><i class="fas fa-clipboard-list"></i> Comprehensive logging system</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
                         <!-- FAQ Section -->
                         <div class="help-section">
                             <h3><i class="fas fa-question"></i> Frequently Asked Questions</h3>
                             <div class="faq-item">
                                 <div class="faq-question">Q: What format should my content list file be in?</div>
                                 <div class="faq-answer">A: Your content list should be a plain text file (.txt) with one file path per line.</div>
+                            </div>
+                        </div>
+
+                        <!-- Project Structure Section -->
+                        <div class="help-section">
+                            <h3><i class="fas fa-folder-open"></i> Project Structure</h3>
+                            <div class="code-block">
+                                <pre><code>duracloud-retrieval-web/
+├── app/
+│   ├── docker/             # Docker configuration
+│   │   ├── Dockerfile     # Container definition
+│   │   └── docker-compose.yml
+│   ├── frontend/          # Web interface
+│   │   └── index.html    # Main interface
+│   ├── server.py          # Flask server
+│   └── requirements.txt   # Python dependencies
+├── downloads/            # Downloaded files
+├── duracloud-logs/       # Application logs
+└── content/             # Content list files</code></pre>
+                            </div>
+                        </div>
+
+                        <!-- Docker Commands Section -->
+                        <div class="help-section">
+                            <h3><i class="fas fa-terminal"></i> Docker Commands</h3>
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5><i class="fab fa-windows"></i> Windows/Linux/macOS</h5>
+                                    <pre><code>cd app/docker
+docker compose up --build -d    # Build and start containers
+docker compose down            # Stop containers
+docker compose logs           # View logs
+docker compose ps             # Check status</code></pre>
+                                </div>
                             </div>
                         </div>
 
@@ -373,6 +431,11 @@ Licensed under the Apache License, Version 2.0
                             <div class="troubleshooting-item">
                                 <h5>Download Failures</h5>
                                 <p>Verify you have sufficient disk space and proper write permissions in the download directory.</p>
+                            </div>
+                            <div class="troubleshooting-item">
+                                <h5>Port Conflicts</h5>
+                                <p><strong>Error:</strong> Port 5000 already in use<br>
+                                <strong>Solution:</strong> Change port in docker-compose.yml or stop conflicting service</p>
                             </div>
                         </div>
 
@@ -397,6 +460,35 @@ Licensed under the Apache License, Version 2.0
                                 <p class="mb-1">Version: 1.0.0</p>
                                 <p class="mb-1">Last Updated: January 2024</p>
                                 <p class="mb-0">Copyright © 2024 Krishna Pareek</p>
+                            </div>
+                        </div>
+
+                        <!-- Additional Documentation -->
+                        <div class="help-section">
+                            <h3><i class="fas fa-book-open"></i> Additional Documentation</h3>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5><i class="fas fa-file-alt"></i> Technical Documentation</h5>
+                                            <p>Comprehensive guide for developers and administrators, including detailed architecture, configuration, and troubleshooting information.</p>
+                                            <a href="documentation.html" class="btn btn-primary" target="_blank">
+                                                <i class="fas fa-external-link-alt"></i> View Technical Docs
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5><i class="fas fa-book"></i> Overview & Quick Start</h5>
+                                            <p>Quick start guide, features overview, installation steps, and basic usage instructions for getting started.</p>
+                                            <a href="readme.html" class="btn btn-primary" target="_blank">
+                                                <i class="fas fa-external-link-alt"></i> View Overview
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

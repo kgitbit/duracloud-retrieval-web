@@ -12,6 +12,7 @@ services:
     volumes:
       - ../../duracloud-logs:/root/duracloud-retrieval-work
       - ../../downloads:/app/downloads
+      - ../../app/frontend:/app/frontend
 
 volumes:
   duracloud-logs: 

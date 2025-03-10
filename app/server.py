@@ -15,7 +15,7 @@ import tempfile
 import shutil
 from werkzeug.utils import secure_filename
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='frontend')
 
 # Configuration from environment variables
 UPLOAD_FOLDER = os.path.join(tempfile.gettempdir(), 'duracloud-uploads')
@@ -68,9 +68,10 @@ def parse_output(output_text):
 
     return files
 
+# Serve frontend files
 @app.route('/')
-def serve_index():
-    return send_from_directory('.', 'index.html')
+def serve_frontend():
+    return send_from_directory('frontend', 'index.html')
 
 @app.route('/config')
 def get_config():

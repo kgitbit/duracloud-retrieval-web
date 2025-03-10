@@ -14,8 +14,6 @@ WORKDIR /app
 # Copy application files
 COPY app/requirements.txt .
 COPY app/server.py .
-COPY app/db_operations.py .
-COPY app/frontend/index.html .
 COPY app/retrievaltool-8.0.0-driver.jar .
 
 # Create and activate virtual environment
@@ -28,16 +26,19 @@ RUN pip install --upgrade pip setuptools wheel && \
     pip install --no-cache-dir -r requirements.txt
 
 # Create necessary directories
-RUN mkdir uploads downloads && \
+RUN mkdir -p uploads downloads frontend && \
     mkdir -p /root/duracloud-retrieval-work && \
     chmod 777 /root/duracloud-retrieval-work && \
-    chmod 777 downloads
+    chmod 777 downloads && \
+    chmod 777 frontend
 
 # Set environment variables
 ENV FLASK_PORT=5000 \
     DOWNLOAD_DIR=/app/downloads \
     CONTENT_LIST_DIR=/app/content \
-    LOG_DIR=/app/logs
+    LOG_DIR=/app/logs \
+    FLASK_ENV=development \
+    FLASK_DEBUG=1
 
 # Expose port
 EXPOSE ${FLASK_PORT}

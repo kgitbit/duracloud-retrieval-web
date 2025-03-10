@@ -22,7 +22,7 @@ app = Flask(__name__, static_folder='frontend')
 UPLOAD_FOLDER = os.path.join(tempfile.gettempdir(), 'duracloud-uploads')
 ALLOWED_EXTENSIONS = {'txt'}
 HOST = os.getenv('HOST')
-PORT = int(os.getenv('PORT', 5000))
+PORT = int(os.getenv('PORT', 8080))
 DOWNLOAD_DIR = os.getenv('DOWNLOAD_DIR', os.path.join(os.getcwd(), 'downloads'))
 
 # Ensure directories exist
@@ -181,5 +181,5 @@ def download_content():
         }), 500
 
 if __name__ == '__main__':
-    port = int(os.getenv('PORT', 5000))
+    port = int(os.getenv('PORT', 8080))
     app.run(host='0.0.0.0', port=port, debug=os.getenv('FLASK_ENV') == 'development')

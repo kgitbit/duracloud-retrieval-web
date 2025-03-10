@@ -24,10 +24,10 @@ RUN mkdir -p downloads content duracloud-logs
 # Set environment variables
 ENV FLASK_APP=server.py
 ENV FLASK_ENV=production
-ENV PORT=5000
+ENV PORT=8080
 
 # Expose port
-EXPOSE 5000
+EXPOSE 8080
 
 # Run the application
 CMD ["python", "server.py"]

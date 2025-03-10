@@ -48,7 +48,7 @@ A modern web interface for downloading content from DuraCloud storage spaces. Th
    docker compose up --build -d
    ```
 
-4. Access the web interface at `http://localhost:5000`
+4. Access the web interface at `http://localhost:8080`
 
 ## 📂 Project Structure
 
@@ -69,7 +69,7 @@ duracloud-retrieval-web/
 
 ## 🔧 Usage
 
-1. Open `http://localhost:5000` in your browser
+1. Open `http://localhost:8080` in your browser
 2. Enter your DuraCloud credentials
 3. Select your space and upload a content list file
 4. Choose download directory
@@ -105,7 +105,7 @@ Common commands:
 
 1. Port Conflicts
    ```
-   Error: Port 5000 already in use
+   Error: Port 8080 already in use
    Solution: Change port in docker-compose.yml or stop conflicting service
    ```
 

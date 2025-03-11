@@ -825,13 +825,14 @@ docker compose ps             # Check status</code></pre>
 
         function clearForm() {
             const form = document.getElementById('retrievalForm');
+            const hostValue = document.getElementById('host').value; // Store host value
             form.reset();
             form.classList.remove('was-validated');
             document.getElementById('downloadProgress').style.display = 'none';
             document.getElementById('fileList').innerHTML = '';
             
-            // Reset default values
-            document.getElementById('host').value = '';
+            // Restore the host value and default download directory
+            document.getElementById('host').value = hostValue;
             document.getElementById('downloadDir').value = '/downloads';
         }
     </script>

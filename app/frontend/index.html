@@ -19,6 +19,50 @@ Licensed under the Apache License, Version 2.0
             min-height: 100vh;
         }
 
+        /* Logo Animation Styles */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            position: relative;
+            flex-direction: row;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            font-size: 1.8rem;
+            color: #fff;
+            transition: all 0.3s ease;
+            animation: shimmer 3s infinite;
+            margin-bottom: 0;
+        }
+
+        .logo-text {
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        @keyframes shimmer {
+            0% {
+                opacity: 1;
+                color: #fff;
+                filter: brightness(1);
+            }
+            50% {
+                opacity: 0.8;
+                color: #89CFF0;
+                filter: brightness(1.1);
+            }
+            100% {
+                opacity: 1;
+                color: #fff;
+                filter: brightness(1);
+            }
+        }
+
         .sidebar {
             width: 250px;
             background-color: #47494B;
@@ -281,7 +325,10 @@ Licensed under the Apache License, Version 2.0
 <body>
     <!-- Vertical Navigation Bar -->
     <div class="sidebar">
-        <h3 class="text-white text-center mb-4">DuraCloud Tools</h3>
+        <div class="logo-container">
+            <i class="fas fa-cloud logo-icon"></i>
+            <span class="logo-text">DuraCloud Tools</span>
+        </div>
         <nav class="nav flex-column">
             <a class="nav-link active" href="javascript:void(0)" data-tab="retrievalTool">
                 <i class="fas fa-cloud-download-alt"></i> Retrieval Tool

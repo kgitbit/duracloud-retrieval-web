@@ -2,7 +2,7 @@ services:
   - type: web
     name: duracloud-retrieval
     env: docker
-    dockerfilePath: ./app/docker/Dockerfile
+    dockerfilePath: app/docker/Dockerfile
     envVars:
       - key: HOST
         sync: false
@@ -11,4 +11,4 @@ services:
     disk:
       name: data
       mountPath: /app/downloads
-      sizeGB: 1 
+      sizeGB: 1

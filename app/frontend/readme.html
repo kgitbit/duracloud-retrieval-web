@@ -16,7 +16,7 @@
             padding-top: 2rem;
         }
         .navbar {
-            background-color: #1C1E21;
+            background-color: #47494B;
         }
         .navbar-brand {
             color: white !important;
@@ -26,8 +26,8 @@
             color: rgba(255,255,255,0.9) !important;
         }
         .section-title {
-            color: #1C1E21;
-            border-bottom: 2px solid #1C1E21;
+            color: #47494B;
+            border-bottom: 2px solid #47494B;
             padding-bottom: 0.5rem;
             margin-bottom: 1.5rem;
         }
@@ -44,8 +44,33 @@
         }
         .feature-icon {
             font-size: 2rem;
-            color: #1C1E21;
+            color: #47494B;
             margin-bottom: 1rem;
+        }
+        .accordion-button {
+            background-color: #47494B;
+            color: #fff;
+        }
+        .accordion-button:not(.collapsed) {
+            background-color: #47494B;
+            color: #fff;
+        }
+        .accordion-button::after {
+            filter: brightness(0) invert(1);
+        }
+        .accordion-button:not(.collapsed)::after {
+            filter: brightness(0) invert(1);
+        }
+        .accordion-button:focus {
+            border-color: #47494B;
+            box-shadow: 0 0 0 0.25rem rgba(71, 73, 75, 0.25);
+        }
+        .accordion-item {
+            border: 1px solid rgba(71, 73, 75, 0.125);
+            margin-bottom: 0.5rem;
+        }
+        .accordion-body {
+            background-color: #FFF9F5;
         }
         pre {
             background-color: #FFF9F5;
@@ -74,16 +99,16 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         .card-header {
-            background-color: #1C1E21;
+            background-color: #47494B;
             color: #FFFFFF;
         }
         .btn-primary {
-            background-color: #1C1E21;
-            border-color: #1C1E21;
+            background-color: #47494B;
+            border-color: #47494B;
         }
         .btn-primary:hover {
-            background-color: #2c2e31;
-            border-color: #2c2e31;
+            background-color: #57595b;
+            border-color: #57595b;
         }
     </style>
 </head>

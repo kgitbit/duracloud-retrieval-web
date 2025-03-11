@@ -11,4 +11,4 @@ services:
     disk:
       name: data
       mountPath: /app/downloads
-      sizeGB: 1
+      sizeGB: 1 
